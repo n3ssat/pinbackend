@@ -21,5 +21,5 @@ Route::get('contactanos', function () {
     $correo = new ContactanosMailable;
     Mail::to('vannej321@gmail.com')->send($correo);
 
-    return view('Mensaje Enviado');
+    //return view('Mensaje Enviado');
 });
