@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +14,3 @@ use Illuminate\Support\Facades\Mail;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('contactanos', function () {
-
-    $correo = new ContactanosMailable;
-    Mail::to('vannej321@gmail.com')->send($correo);
-
-    //return view('Mensaje Enviado');
-});
