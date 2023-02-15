@@ -53,9 +53,11 @@ class ContactController extends Controller
 
         $details = [
             'title' => 'New contact: ' . $contact->name,
-            'body' => 'email: ' . $contact->email,
-            ];
-            \Mail::to('vannej321@gmail.com')->send(new \App\Mail\sendPost($details));
+            'body' => 'Email: ' . $contact->email,
+            'body1' => 'Phone: ' . $contact->phone,
+            'body2' => 'Message: ' . $contact->message,
+        ];
+        \Mail::to('vannej321@gmail.com')->send(new \App\Mail\SendPost($details));
 
         return response()->json([
             'mensaje' => 'Se Agregó Correctamente al Contacto',
