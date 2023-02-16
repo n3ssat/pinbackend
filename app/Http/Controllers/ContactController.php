@@ -37,10 +37,9 @@ class ContactController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'email' => ['required','string','email','max:255','indisposable'],
-            'phone' => ['required','integer'],
-            'message' => ['required']
-
+            'email' => ['required', 'string', 'email', 'max:255', 'indisposable'],
+            'phone' => ['required', 'integer'],
+            'message' => ['required'],
 
         ]);
 
@@ -48,9 +47,17 @@ class ContactController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'phone' => $request['phone'],
-            'message' => $request['message']
+            'message' => $request['message'],
         ]);
         //Armar la estructura para el envío del mail.
+
+        $details = [
+            'title' => 'New contact: ' . $contact->name,
+            'body' => 'Email: ' . $contact->email,
+            'body1' => 'Phone: ' . $contact->phone,
+            'body2' => 'Message: ' . $contact->message,
+        ];
+        \Mail::to('vannej321@gmail.com')->send(new \App\Mail\SendPost($details));
 
         return response()->json([
             'mensaje' => 'Se Agregó Correctamente al Contacto',
